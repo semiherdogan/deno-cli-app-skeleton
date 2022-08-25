@@ -32,8 +32,7 @@ jobs:
         with:
           deno-version: ${{ env.DENO_VERSION }}
       - run: |
-          chmod +x ./run.sh
-          ./run.sh build
+          deno task build
           mv app ${{ env.APP_NAME }}_${{ matrix.os }}
       - name: Create artifact
         uses: actions/upload-artifact@v3
