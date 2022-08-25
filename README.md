@@ -1,4 +1,4 @@
-# app name
+# :app name:
 
 ## Development steps
 
