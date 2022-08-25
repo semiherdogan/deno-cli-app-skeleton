@@ -1,8 +1,11 @@
 # app name
 
 ## Development steps
-* Update `APP_NAME` variable in `.env.defaults` 
-* Update help string in `src/mod.ts`
+
+- Update `APP_NAME` variable in `.env.defaults`
+- Update help string in `src/mod.ts`
+- Update `BUILD_ARGS` variable in `run.sh` if necessary
+- Use `run.sh` file for build and run. Example: `./run.sh run --version`
 
 ## Installation
 

@@ -3,14 +3,14 @@ import { blue, green, magenta, red, writeAllSync, yellow } from '../deps.ts';
 export default class OutputWriter {
   text = '';
 
-  public write(text: string): this {
-    writeAllSync(Deno.stdout, new TextEncoder().encode(text));
+  public write(text: string, end = ' '): this {
+    writeAllSync(Deno.stdout, new TextEncoder().encode(text + end));
 
     return this;
   }
 
   public newLine() {
-    return this.write('\n');
+    return this.write('\n', '');
   }
 
   public blue(text: string) {
