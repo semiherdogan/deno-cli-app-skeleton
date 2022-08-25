@@ -47,15 +47,19 @@ jobs:
       - build-artifact
     steps:
       - uses: actions/checkout@v3
+      - name: Set env
+        run: |
+          source .env.defaults
+          echo "APP_NAME=${APP_NAME}" >> $GITHUB_ENV
       - name: Create Release
         id: create-release
         uses: ncipollo/release-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
         with:
-          artifacts: "app*"
+          artifacts: "${{ env.APP_NAME }}*"
           body: "Release"
-          draft: true
+          draft: false
           generateReleaseNotes: true
 
       - name: Write upload_url to file
