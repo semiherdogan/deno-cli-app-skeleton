@@ -1,6 +1,6 @@
 # app name
 
-# Development steps
+## Development steps
 * Update `APP_NAME` variable in `.env.defaults` 
 * Update help string in `src/mod.ts`
 
