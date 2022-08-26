@@ -6,7 +6,7 @@
 - Update help string in `src/mod.ts`.
 - Use `deno task run` to run project.
 - Use `deno task build` to build project.
-- Use `deno task` to see all task list. 
+- Use `deno task` to see all task list.
 
 ## Installation
 

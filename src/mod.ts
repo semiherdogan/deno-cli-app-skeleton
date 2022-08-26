@@ -1,5 +1,4 @@
-import { bold, parse } from './deps.ts';
-import OutputWriter from './lib/output_writer.ts';
+import { bold, green, parse, yellow } from './deps.ts';
 import main from './app.ts';
 
 const version = Deno.env.get('APP_VERSION') || '0.0.0';
@@ -23,19 +22,17 @@ Options:
 const args = parse(Deno.args);
 
 if (args._.includes('version') || args?.v || args?.version) {
-  new OutputWriter()
-    .green(bold(appName))
-    .yellow(version + '-' + platform)
-    .newLine();
+  console.log(
+    green(bold(appName)) +
+      ' ' +
+      yellow(version + '-' + platform),
+  );
 
   Deno.exit(0);
 }
 
 if (args._.includes('help') || args?.h || args?.help) {
-  new OutputWriter()
-    .write(help)
-    .newLine();
-
+  console.log(help);
   Deno.exit(0);
 }
 

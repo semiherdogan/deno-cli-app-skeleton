@@ -1,42 +1,33 @@
-import Logger from './logger.ts';
+import { green, Spinner } from '../deps.ts';
 
-import { SpinnerOptions, SpinnerTypes, TerminalSpinner } from '../deps.ts';
-
-let terminalSpinner: TerminalSpinner;
-
-const terminalSpinnerOptions: Partial<SpinnerOptions> = {
+const spinner = Spinner({
   text: '',
-  color: 'green',
-  spinner: SpinnerTypes.windows,
+  prefix: '',
+  color: green,
+  spinner: 'dots',
+  hideCursor: true,
   indent: 0,
-  cursor: false,
-  writer: Deno.stdout,
-};
+});
 
 export function spinnerStart(text = '') {
-  terminalSpinnerOptions.text = text;
-  terminalSpinner = new TerminalSpinner(terminalSpinnerOptions);
-
-  terminalSpinner.start();
+  spinner.text = text;
+  spinner.start();
 }
 
-export function spinnerUpdate(text = '', color = terminalSpinnerOptions.color) {
-  terminalSpinnerOptions.text = text;
-  terminalSpinnerOptions.color = color;
-
-  terminalSpinner.set(terminalSpinnerOptions);
+export function spinnerUpdate(text = '') {
+  spinner.text = text;
 }
 
 export function spinnerStop(text = '') {
-  terminalSpinner.stop();
+  spinner.stop();
 
   if (text.length > 0) {
-    Logger.log(text);
+    console.log(text);
   }
 }
 
-// deno-lint-ignore ban-types
 export async function spinnerRun(
+  // deno-lint-ignore ban-types
   callback: Function,
   startText = '',
   endText = '',
