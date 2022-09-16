@@ -6,7 +6,8 @@ on:
       - '*'
 
 env:
-  DENO_VERSION: '1.24.3'
+  APP_NAME: ''
+  DENO_VERSION: '1.25.3'
 
 jobs:
   build-artifact:
@@ -19,14 +20,11 @@ jobs:
           - macOS-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set env
+      - name: Update constants
         run: |
           RELEASE_TAG=${GITHUB_REF#refs/*/}
-          sed -i -E "s/APP_VERSION.*/APP_VERSION=${RELEASE_TAG}/g" .env.defaults
-          sed -i -E 's/APP_PLATFORM.*/APP_PLATFORM=${{ runner.os }}/g' .env.defaults
-          cat .env.defaults
-          source .env.defaults
-          echo "APP_NAME=${APP_NAME}" >> $GITHUB_ENV
+          sed -i '' -e "s/export const Version.*/export const Version = '${RELEASE_TAG}';/g" src/constants.ts
+          sed -i '' -e "s/export const Platform.*/export const Platform = '${{ runner.os }}';/g" src/constants.ts
       - name: Build-${{ runner.os }}
         uses: maximousblk/setup-deno@v2
         with:
@@ -46,10 +44,6 @@ jobs:
       - build-artifact
     steps:
       - uses: actions/checkout@v3
-      - name: Set env
-        run: |
-          source .env.defaults
-          echo "APP_NAME=${APP_NAME}" >> $GITHUB_ENV
       - name: Create Release
         id: create-release
         uses: ncipollo/release-action@v1
@@ -86,12 +80,6 @@ jobs:
             asset_name_suffix: macos
             asset_content_type: application/x-mach-binary
     steps:
-      - uses: actions/checkout@v3
-      - name: Set env
-        run: |
-          source .env.defaults
-          echo "APP_NAME=${APP_NAME}" >> $GITHUB_ENV
-
       - uses: actions/download-artifact@v3
         with:
           name: artifact-${{ matrix.os }}

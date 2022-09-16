@@ -1,9 +1,9 @@
-import { green, Spinner } from '../deps.ts';
+import { Colors, Spinner, SpinnerSymbols } from '../deps.ts';
 
 const spinner = Spinner({
   text: '',
   prefix: '',
-  color: green,
+  color: Colors.green,
   spinner: 'dots',
   hideCursor: true,
   indent: 0,
@@ -26,15 +26,12 @@ export function spinnerStop(text = '') {
   }
 }
 
-export async function spinnerRun(
-  // deno-lint-ignore ban-types
-  callback: Function,
-  startText = '',
-  endText = '',
-) {
-  spinnerStart(startText);
+export function spinnerSuccess(text = ''): void {
+  text.length > 0 ? spinner.succeed(text) : spinner.stop();
+}
 
-  await callback();
-
-  spinnerStop(endText);
+export function spinnerError(text = ''): void {
+  text.length > 0
+    ? spinner.stopAndPersist({ text, symbol: SpinnerSymbols.error })
+    : spinner.stop();
 }

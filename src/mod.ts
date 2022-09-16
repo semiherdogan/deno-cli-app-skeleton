@@ -1,16 +1,13 @@
-import { bold, green, parse, yellow } from './deps.ts';
+import { ArgParse, Colors } from './deps.ts';
+import { AppName, Platform, Version } from './constants.ts';
 import main from './app.ts';
 
-const version = Deno.env.get('APP_VERSION') || '0.0.0';
-const platform = Deno.env.get('APP_PLATFORM') || 'unknown-os';
-const appName = Deno.env.get('APP_NAME') || 'my-app';
-
-const help = `${appName} ${version}-${platform}
+const help = `${AppName} ${Version}-${Platform}
 
 Usage:
-    ${appName} [arg1] [arg2]
-    ${appName} (-h | --help)
-    ${appName} (-v | --version)
+    ${AppName} [arg1] [arg2]
+    ${AppName} (-h | --help)
+    ${AppName} (-v | --version)
 
 Options:
     -h, --help       Print help
@@ -19,13 +16,13 @@ Options:
     [arg2]
 `;
 
-const args = parse(Deno.args);
+const args = ArgParse(Deno.args);
 
 if (args._.includes('version') || args?.v || args?.version) {
   console.log(
-    green(bold(appName)) +
+    Colors.green(Colors.bold(AppName)) +
       ' ' +
-      yellow(version + '-' + platform),
+      Colors.yellow(Version + '-' + Platform),
   );
 
   Deno.exit(0);
@@ -36,4 +33,12 @@ if (args._.includes('help') || args?.h || args?.help) {
   Deno.exit(0);
 }
 
-await main(args);
+try {
+  await main(args);
+} catch (error) {
+  console.log(Colors.red(Colors.bold('!')), 'An error occurred while working!');
+
+  if (args?.debug) {
+    console.log(error);
+  }
+}
