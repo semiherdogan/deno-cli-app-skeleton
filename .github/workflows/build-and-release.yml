@@ -7,7 +7,7 @@ on:
 
 env:
   APP_NAME: 'my-app'
-  DENO_VERSION: '1.25.3'
+  DENO_VERSION: '1.27.1'
 
 jobs:
   build-artifact:
