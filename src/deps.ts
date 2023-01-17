@@ -1,6 +1,6 @@
 // args
-export { parse as ArgParse } from 'https://deno.land/std@0.162.0/flags/mod.ts';
-export type { Args } from 'https://deno.land/std@0.162.0/flags/mod.ts';
+export { parse as ArgParse } from 'https://deno.land/std@0.173.0/flags/mod.ts';
+export type { Args } from 'https://deno.land/std@0.173.0/flags/mod.ts';
 
 // spinner
 export { wait as Spinner } from 'https://deno.land/x/wait@0.1.12/mod.ts';
@@ -8,12 +8,12 @@ export { symbols as SpinnerSymbols } from 'https://deno.land/x/wait@0.1.12/log_s
 
 /**
  * Table
- * @see https://cliffy.io/docs@v0.25.4/table/options
+ * @see https://cliffy.io/docs@v0.25.7/table/options
  */
-// export { Table } from 'https://deno.land/x/cliffy@v0.25.4/table/mod.ts';
+// export { Table } from 'https://deno.land/x/cliffy@v0.25.7/table/mod.ts';
 
 // Date formatter
-// export { format as DateFormat } from 'https://deno.land/std@0.162.0/datetime/mod.ts';
+// export { format as DateFormat } from 'https://deno.land/std@0.173.0/datetime/mod.ts';
 
 // colors
-export * as Colors from 'https://deno.land/std@0.162.0/fmt/colors.ts';
+export * as Colors from 'https://deno.land/std@0.173.0/fmt/colors.ts';
