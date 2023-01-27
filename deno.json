@@ -14,7 +14,7 @@
     "lint": "deno fmt --check",
     "format": "deno fmt",
     "run": "deno run --allow-run --allow-env --allow-read src/mod.ts",
-    "build": "deno compile --allow-run --allow-env --allow-read --output app src/mod.ts && ls -lh app",
+    "build": "deno compile --allow-run --allow-env --allow-read --output app src/mod.ts && du -h app",
     "lock": "deno cache --import-map=deno.json --lock-write src/mod.ts",
     "lock-reload": "deno cache --reload --lock=deno.lock deno.json"
   }

@@ -1,11 +1,6 @@
 import { Args } from 'std/flags/mod.ts';
 
-import {
-  spinnerStart,
-  spinnerSuccess,
-  spinnerUpdate,
-  // spinnerError,
-} from './lib/spinner.ts';
+import { spinnerStart, spinnerSuccess, spinnerUpdate } from './lib/spinner.ts';
 
 export default async (args: Args) => {
   spinnerStart('Starting....');
@@ -14,7 +9,8 @@ export default async (args: Args) => {
   spinnerUpdate('Updating...');
   await new Promise((resolve) => setTimeout(resolve, 1500));
 
-  spinnerSuccess();
+  spinnerSuccess('Success');
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  console.log('Hello from app.ts', args);
+  console.log('Cli arguments: ', args);
 };
