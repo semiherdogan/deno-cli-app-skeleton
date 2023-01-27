@@ -1,5 +1,11 @@
-import { Args } from './deps.ts';
-import { spinnerStart, spinnerSuccess, spinnerUpdate } from './lib/spinner.ts';
+import { Args } from 'std/flags/mod.ts';
+
+import {
+  spinnerStart,
+  spinnerSuccess,
+  spinnerUpdate,
+  // spinnerError,
+} from './lib/spinner.ts';
 
 export default async (args: Args) => {
   spinnerStart('Starting....');

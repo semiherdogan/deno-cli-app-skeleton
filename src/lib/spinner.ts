@@ -1,24 +1,26 @@
-import { Colors, Spinner, SpinnerSymbols } from '../deps.ts';
+import { wait } from 'wait/mod.ts';
+import { symbols } from 'wait/log_symbols.ts';
+import { green } from 'std/fmt/colors.ts';
 
-const spinner = Spinner({
+const spinner = wait({
   text: '',
   prefix: '',
-  color: Colors.green,
+  color: green,
   spinner: 'dots',
   hideCursor: true,
   indent: 0,
 });
 
-export function spinnerStart(text = '') {
+export function spinnerStart(text = ''): void {
   spinner.text = text;
   spinner.start();
 }
 
-export function spinnerUpdate(text = '') {
+export function spinnerUpdate(text = ''): void {
   spinner.text = text;
 }
 
-export function spinnerStop(text = '') {
+export function spinnerStop(text = ''): void {
   spinner.stop();
 
   if (text.length > 0) {
@@ -32,6 +34,6 @@ export function spinnerSuccess(text = ''): void {
 
 export function spinnerError(text = ''): void {
   text.length > 0
-    ? spinner.stopAndPersist({ text, symbol: SpinnerSymbols.error })
+    ? spinner.stopAndPersist({ text, symbol: symbols.error })
     : spinner.stop();
 }

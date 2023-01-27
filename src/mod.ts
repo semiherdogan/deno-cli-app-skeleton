@@ -1,5 +1,7 @@
-import { ArgParse, Colors } from './deps.ts';
+import { parse } from 'std/flags/mod.ts';
+import { bold, green, red, yellow } from 'std/fmt/colors.ts';
 import { AppName, Platform, Version } from './constants.ts';
+
 import main from './app.ts';
 
 const help = `${AppName} ${Version}-${Platform}
@@ -16,27 +18,28 @@ Options:
     [arg2]
 `;
 
-const args = ArgParse(Deno.args);
+const args = parse(Deno.args);
 
-if (args._.includes('version') || args?.v || args?.version) {
-  console.log(
-    Colors.green(Colors.bold(AppName)) +
-      ' ' +
-      Colors.yellow(Version + '-' + Platform),
-  );
+if (args._.includes('help') || args?.h || args?.help) {
+  console.log(help);
 
   Deno.exit(0);
 }
 
-if (args._.includes('help') || args?.h || args?.help) {
-  console.log(help);
+if (args._.includes('version') || args?.v || args?.version) {
+  console.log(
+    green(bold(AppName)) +
+      ' ' +
+      yellow(Version + '-' + Platform),
+  );
+
   Deno.exit(0);
 }
 
 try {
   await main(args);
 } catch (error) {
-  console.log(Colors.red(Colors.bold('!')), 'An error occurred while working!');
+  console.log(red(bold('!')), 'An error occurred!');
 
   if (args?.debug) {
     console.log(error);

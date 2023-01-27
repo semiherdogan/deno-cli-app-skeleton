@@ -4,12 +4,18 @@
       "singleQuote": true
     }
   },
+
+  "imports": {
+    "std/": "https://deno.land/std@0.174.0/",
+    "wait/": "https://deno.land/x/wait@0.1.12/",
+    "cliffy/": "https://deno.land/x/cliffy@v0.25.7/"
+  },
   "tasks": {
     "lint": "deno fmt --check",
     "format": "deno fmt",
     "run": "deno run --allow-run --allow-env --allow-read src/mod.ts",
     "build": "deno compile --allow-run --allow-env --allow-read --output app src/mod.ts && ls -lh app",
-    "lock": "deno cache --lock=deno.lock --lock-write src/deps.ts",
-    "lock-reload": "deno cache --reload --lock=deno.lock src/deps.ts"
+    "lock": "deno cache --import-map=deno.json --lock-write src/mod.ts",
+    "lock-reload": "deno cache --reload --lock=deno.lock deno.json"
   }
 }

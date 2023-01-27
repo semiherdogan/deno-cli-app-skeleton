@@ -13,7 +13,7 @@
 
 **NOTE**: Before install this package, you should have this and that.
 
-- Download standalone binary for apple from
+- Download standalone binary from
   [releases](https://github.com/username/repository/releases).
 - Move downloaded file to path
 - Or you can download source code and compile on your own.
@@ -24,6 +24,12 @@
 
 - `--help` to print help.
 - `--version` to print app version.
+
+## Libs to use (for development)
+
+- You may use [cliffy](https://cliffy.io/docs/) for cli table, prompt etc.
+  (already included in import maps)
+- For date format you may try [this](std/datetime/mod.ts).
 
 ## License
 
