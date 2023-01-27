@@ -28,7 +28,7 @@
 
 ## Libs to use (for development)
 
-- You may use [cliffy](https://cliffy.io/docs/) for cli table, prompt etc.
+- You may use [cliffy](https://cliffy.io/) for cli table, prompt etc.
   (already included in import maps)
 - For date format you may use [this](std/datetime/mod.ts).
 
